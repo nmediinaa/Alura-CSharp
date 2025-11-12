@@ -3,6 +3,8 @@
 .vscode/
 *.suo
 *.user
+**/.idea/
+*.sln.DotSettings.user
 
 # Pastas de build
 [Bb]in/
