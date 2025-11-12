@@ -1,0 +1,17 @@
+# Arquivos e pastas do Visual Studio e VS Code
+.vs/
+.vscode/
+*.suo
+*.user
+
+# Pastas de build
+[Bb]in/
+[Oo]bj/
+
+# Arquivos de build
+*.dll
+*.exe
+*.pdb
+
+# Pacotes (se usar NuGet local)
+[Pp]ackages/
