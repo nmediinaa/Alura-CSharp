@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Convertendo-horas", "Convertendo-horas\Convertendo-horas.csproj", "{7D7AC9B1-41A6-40F3-A5DA-EE42C9E27BF4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7D7AC9B1-41A6-40F3-A5DA-EE42C9E27BF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D7AC9B1-41A6-40F3-A5DA-EE42C9E27BF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D7AC9B1-41A6-40F3-A5DA-EE42C9E27BF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D7AC9B1-41A6-40F3-A5DA-EE42C9E27BF4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
