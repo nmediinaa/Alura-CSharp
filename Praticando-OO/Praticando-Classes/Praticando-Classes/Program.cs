@@ -1,4 +1,5 @@
 ﻿using Praticando_Classes.Models;
+using Praticando_Classes.Models.LojaOnline;
 
 //Exercicio 1 - Classe Livro
 
@@ -45,3 +46,35 @@ Filme filme = new Filme("Matrix", 18);
 
 filme.PodeAssistir(17);
 filme.PodeAssistir(18);
+Console.WriteLine("");
+
+//Exercicio 7 - Controle de estoque
+Produto ebookCSharp = new Produto("CSharp", 20);
+
+ebookCSharp.Exibir();
+ebookCSharp.Retirar(10);
+ebookCSharp.Retirar(15);
+
+Produto ebookReact = new Produto("React", 0);
+Console.WriteLine("");
+
+//Exercicio 8 - Controle de pedidos
+Pedido pedido1 = new Pedido(1, "Nicolas Medina", "Pendente");
+
+pedido1.ExibirPedido();
+pedido1.AtualizarStatus("Entregue");
+pedido1.ExibirPedido();
+Console.WriteLine("");
+
+//Exercicio 9 - Agendamento Médico
+Consulta consulta = new Consulta("Nicolas Medina", "Rogerio", new DateTime(2025, 11, 24));
+consulta.ExibirResumo();
+consulta.Reagendar(new DateTime(2025, 11, 30));
+consulta.ExibirResumo();
+Console.WriteLine("");
+
+//Exercicio 10 - Loja Online
+Informacaotecnica info = new Informacaotecnica(1200, "MAC/WIN/Linux");
+ProdutoDigital produto = new ProdutoDigital("FisherHero", 25, info);
+
+produto.ExibirResumo();
