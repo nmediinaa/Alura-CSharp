@@ -1,4 +1,4 @@
-﻿namespace Screen_Sound;
+﻿namespace Screen_Sound.Models;
 
 public class Musica
 {
