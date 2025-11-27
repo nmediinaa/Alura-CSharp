@@ -1,24 +1,24 @@
 ﻿using Screen_Sound.Models;
+
 namespace Screen_Sound.View;
 
-public class MenuExibirDetalhes : Menu//Classe pai (Herança)
+public class MenuRegistrarAlbum : Menu
 {
-    
-    public override void Executar(Dictionary<string, Banda> bandasRegistradas)
+    public override void Executar(Dictionary<String, Banda> bandasRegistradas)
     {
         base.Executar(bandasRegistradas);
-        ExibirTituloDaOpcao("Exibir detalhes da banda");
-        Console.Write("Digite o nome da banda que deseja conhecer melhor: ");
+        ExibirTituloDaOpcao("Registro de álbuns");
+        Console.Write("Digite a banda cujo álbum deseja registrar: ");
         string nomeDaBanda = Console.ReadLine()!;
         if (bandasRegistradas.ContainsKey(nomeDaBanda))
         {
+            Console.Write("Agora digite o título do álbum: ");
+            Album album = new(Console.ReadLine()!);
             Banda banda = bandasRegistradas[nomeDaBanda];
-            Console.WriteLine($"\nA média da banda {banda.Nome} é {banda.Media}.");
-            Console.WriteLine("Digite uma tecla para votar ao menu principal");
-            Console.ReadKey();
+            banda.AdicionarAlbum(album);
+            Console.WriteLine($"O álbum {album.Nome} de {banda.Nome} foi registrado com sucesso!");
+            Thread.Sleep(4000);
             Console.Clear();
-            
-
         }
         else
         {
@@ -26,7 +26,6 @@ public class MenuExibirDetalhes : Menu//Classe pai (Herança)
             Console.WriteLine("Digite uma tecla para voltar ao menu principal");
             Console.ReadKey();
             Console.Clear();
-            
         }
     }
 }

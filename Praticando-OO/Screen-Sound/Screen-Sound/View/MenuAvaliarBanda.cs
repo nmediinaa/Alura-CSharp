@@ -2,9 +2,9 @@
 using Screen_Sound.Models;
 public class MenuAvaliarBanda : Menu//Classe pai (Herança)
 {
-    public void Executar(Dictionary<string, Banda> bandasRegistradas)
+    public override void Executar(Dictionary<string, Banda> bandasRegistradas)//override palavra reservada para sobrescrver métodos herdados
     {
-        Console.Clear();
+        base.Executar(bandasRegistradas);//Executa bloco de código do método herdados da classe pai
         ExibirTituloDaOpcao("Avaliar banda");
         Console.Write("Digite o nome da banda que deseja avaliar: ");
         string nomeDaBanda = Console.ReadLine()!;
