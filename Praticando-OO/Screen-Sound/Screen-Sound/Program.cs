@@ -1,10 +1,12 @@
 ﻿using Screen_Sound.Models;
 using Screen_Sound.View;
 
-Banda metallica = new Banda("Metallica");
-metallica.AdicionarNota(new Avaliacao(10));
-metallica.AdicionarNota(new Avaliacao(10));
-metallica.AdicionarNota(new Avaliacao(9));
+Banda u2 = new Banda("U2");
+u2.AdicionarNota(new Avaliacao(10));
+u2.AdicionarNota(new Avaliacao(10));
+u2.AdicionarNota(new Avaliacao(9));
+Album album1 = new Album("Album1");
+u2.AdicionarAlbum(album1);
 
 Banda theBeatles = new("The Beatles");//Somente com o NEW pois o tipo ja esta explicito na criação.
 theBeatles.AdicionarNota(new Avaliacao(10));
@@ -12,7 +14,7 @@ theBeatles.AdicionarNota(new Avaliacao(7));
 theBeatles.AdicionarNota(new Avaliacao(6));
 
 Dictionary<string, Banda> bandasRegistradas = new ();
-bandasRegistradas.Add(metallica.Nome, metallica);
+bandasRegistradas.Add(u2.Nome, u2);
 bandasRegistradas.Add(theBeatles.Nome, theBeatles);
 
 Dictionary<int, Menu> opcoes = new();
@@ -20,7 +22,8 @@ opcoes.Add(1, new MenuRegistraBanda());
 opcoes.Add(2, new MenuRegistrarAlbum());
 opcoes.Add(3, new MenuBandasRegistradas());
 opcoes.Add(4, new MenuAvaliarBanda());
-opcoes.Add(5, new MenuExibirDetalhes());
+opcoes.Add(5, new MenuAvaliarAlbum());
+opcoes.Add(6, new MenuExibirDetalhes());
 opcoes.Add(0, new MenuSair());
 
 void ExibirLogo()
@@ -44,7 +47,8 @@ void ExibirOpcoesDoMenu()
     Console.WriteLine("Digite 2 para registrar o álbum de uma banda");
     Console.WriteLine("Digite 3 para mostrar todas as bandas");
     Console.WriteLine("Digite 4 para avaliar uma banda");
-    Console.WriteLine("Digite 5 para exibir os detalhes de uma banda");
+    Console.WriteLine("Digite 5 para avaliar um album");
+    Console.WriteLine("Digite 6 para exibir os detalhes de uma banda");
     Console.WriteLine("Digite 0 para sair");
 
     Console.Write("\nDigite a sua opção: ");

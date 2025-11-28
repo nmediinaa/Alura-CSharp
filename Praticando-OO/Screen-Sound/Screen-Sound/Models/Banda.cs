@@ -1,8 +1,8 @@
 ﻿namespace Screen_Sound.Models;
 
-public class Banda
+public class Banda : IAvaliavel
 {
-    private List<Album> albuns = new List<Album>();
+    private List<Album> albuns = new ();
     private List<Avaliacao> notas = new ();
 
     public Banda(string nome)
