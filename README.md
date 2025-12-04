@@ -1,6 +1,6 @@
 # 🚀 Formação Back-end C# - Alura
 
-Repositório destinado aos exercícios e desafios práticos desenvolvidos durante a formação de **C# e Orientação a Objetos** da Alura. O foco aqui é a evolução da lógica de programação, domínio da sintaxe do C# e .NET e pratica com o paradigma de POO
+Repositório destinado aos exercícios e desafios práticos desenvolvidos durante a carreira de **Desenvolvimento Back-End .NET** da Alura. O foco aqui é a evolução da lógica de programação, domínio da sintaxe do C# e .NET e pratica com o paradigma de POO
 
 ## 🛠️ Stack Utilizada
 * **C#** (Linguagem)
