@@ -10,14 +10,15 @@ Repositório destinado aos exercícios e desafios práticos desenvolvidos durant
 
 ## 📂 Navegação pelos Módulos
 
-Abaixo você encontra um diretório com exercicios que fiz em cada etapa. Clique para ver detalhes e algumas anotações:
+Abaixo você encontra alguns diretórios das aulas com exercicios e projetos que fiz em cada etapa. Clique para ver detalhes e algumas anotações:
 
 | Pasta | Tópico | Status |
 | :--- | :--- | :---: |
 | [**📂 Praticando-Condicionais**](./Praticando-Condicionais) | Lógica com `if`, `else` e `switch` | ✅ |
 | [**📂 Praticando-Repeticoes**](./Praticando-Repeticoes) | Loops (`for`, `foreach`, `while`, `do-while` ) | ✅ |
 | [**📂 Praticando-Operacoes**](./Praticando-Operacoes) | Variaveis e tipos | ✅ |
-| [**📂 Praticando-OO**](./Praticando-OO) | Classes, Métodos, Herança, Encapsulamento, Polimorfismo, Composição | 🚧 |
+| [**📂 Praticando-OO**](./Praticando-OO) | Classes, Métodos, Herança, Encapsulamento, Polimorfismo, Composição | ✅ |
+| [**📂 Praticando-API-LINQ**](./Praticando-API-LINQ) | HttpClient, Json, LINQ e Files | ✅ |
 
 ---
 *Desenvolvido por Nicolas Medina durante os estudos de C#.*
