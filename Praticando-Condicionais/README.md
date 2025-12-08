@@ -1,6 +1,6 @@
 [← Voltar para a raiz](../README.md)
 
-# 🚦 Praticando Condicionais e Fluxo
+# 🚦 Praticando Condicionais
 
 Neste diretório estão os exercícios focados na lógica de tomadas de decisão em C#. O objetivo foi dominar como o programa deve reagir a diferentes cenários e entradas de dados.
 
