@@ -1,4 +1,6 @@
-﻿using NotificacoesSistema.Interfaces;
+﻿//Polimorfismo do tipo de subtipo
+
+using NotificacoesSistema.Interfaces;
 using NotificacoesSistema.Models;
 
 List<INotificacao> sistemaNotificacao = new List<INotificacao>
