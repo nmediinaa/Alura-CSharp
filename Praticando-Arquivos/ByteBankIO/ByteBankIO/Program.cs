@@ -15,7 +15,7 @@ class Program
             while (numerosDeBytesLidos != 0)
             {
                 numerosDeBytesLidos = fluxoDoArquivo.Read(buffer, 0, 1024);
-                ReadBuffer(buffer);
+                ReadBuffer(buffer, numerosDeBytesLidos);
             }
             
             fluxoDoArquivo.Close();
@@ -24,10 +24,10 @@ class Program
     }
 
 
-    static void ReadBuffer(byte[] buffer)
+    static void ReadBuffer(byte[] buffer, int bytesNovosLidos)
     {
         UTF8Encoding utf8 = new();
-        string text = utf8.GetString(buffer);
+        string text = utf8.GetString(buffer,  0, bytesNovosLidos);
         Console.Write(text);
     }
     
