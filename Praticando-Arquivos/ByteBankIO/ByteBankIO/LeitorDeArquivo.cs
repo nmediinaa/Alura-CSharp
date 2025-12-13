@@ -28,5 +28,5 @@ public class LeitorDeArquivo
             Console.Write(text);
         }
     }
-
+ 
 }
