@@ -20,14 +20,31 @@ class Program
             //Aqui o processe nn carrega o arquivo inteiro na memória sendo muito parecido com o primeiro processo
             while (!reader.EndOfStream)//Le até o fim do arquivo
             {
-                Console.WriteLine(reader.ReadLine());
+                string linha = reader.ReadLine()!;
+                ContaCorrente conta = CreateContaCorrente(linha);
+                Console.WriteLine($"Ag: {conta.Agencia} Conta: {conta.Numero} Saldo: {conta.Saldo} Titular: {conta.Titular.Nome}");
             }
         }    
+   
+    }
+
+    static ContaCorrente CreateContaCorrente(string linha)
+    {
+        string[] values = linha.Split(',');
+
+        int ag = int.Parse(values[0]); 
+        int numeroConta = int.Parse(values[1]);
+        double saldo = double.Parse(values[2].Replace('.', ','));
+        string titular = values[3];
         
+        Cliente cliente = new Cliente();
+        cliente.Nome = titular;
         
+        ContaCorrente contaCorrente = new ContaCorrente(ag, numeroConta);
+        contaCorrente.Titular = cliente;
+        contaCorrente.Depositar(saldo);
         
-        
-        
+        return contaCorrente;
     }
 
 }
