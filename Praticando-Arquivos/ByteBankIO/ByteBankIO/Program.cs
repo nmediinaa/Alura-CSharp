@@ -5,6 +5,16 @@ class Program
     static void Main(string[] args)
     {
         string filePath = "contas.txt";
+        
+        //LerArquivo(filePath);
+        //CriarArquivo();
+        CriarArquivoBinary();
+        LerArquivoBinary();
+   
+    }
+
+    static void LerArquivo(string filePath)
+    {
         using (FileStream fluxoDoArquivo = new FileStream(filePath, FileMode.Open))
         {
             StreamReader reader = new StreamReader(fluxoDoArquivo);
@@ -20,10 +30,7 @@ class Program
                 ContaCorrente conta = CreateContaCorrente(linha);
                 Console.WriteLine($"Ag: {conta.Agencia} Conta: {conta.Numero} Saldo: {conta.Saldo} Titular: {conta.Titular.Nome}");
             }
-        }  
-        
-        CriarArquivo();
-   
+        } 
     }
 
     static ContaCorrente CreateContaCorrente(string linha)
@@ -52,7 +59,35 @@ class Program
         using (StreamWriter writer = new StreamWriter(fluxoDoArquivo))
         {
                 writer.Write("316,3254,3350.37,Leonardo");
+                writer.Flush();//Descarrega o buffer para o disco rigido
                 Console.WriteLine("Arquivo criado com sucesso!");
+        }
+    }
+
+    static void CriarArquivoBinary()
+    {
+        using (FileStream fs = new FileStream("contasExportadas.csv", FileMode.Create))
+        using (BinaryWriter writer = new BinaryWriter(fs))
+        {
+            writer.Write(316);
+            writer.Write(3254);
+            writer.Write(3350.37);
+            writer.Write("Leonardo");
+        }
+        
+    }
+
+    static void LerArquivoBinary()
+    {
+        using (FileStream fs = new FileStream("contasExportadas.csv", FileMode.Open))
+        using (BinaryReader reader = new BinaryReader(fs))
+        {
+            int ag = reader.ReadInt32();
+            int numeroConta = reader.ReadInt32();
+            double saldo = reader.ReadDouble();
+            string titular = reader.ReadString();
+
+            Console.WriteLine($"Ag: {ag} Numero: {numeroConta} saldo: {saldo} Titular: {titular}");
         }
     }
 
