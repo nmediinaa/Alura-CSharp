@@ -5,10 +5,6 @@ class Program
     static void Main(string[] args)
     {
         string filePath = "contas.txt";
-        
-        //LeitorDeArquivo.ReadFile(filePath);
-
-
         using (FileStream fluxoDoArquivo = new FileStream(filePath, FileMode.Open))
         {
             StreamReader reader = new StreamReader(fluxoDoArquivo);
@@ -24,7 +20,9 @@ class Program
                 ContaCorrente conta = CreateContaCorrente(linha);
                 Console.WriteLine($"Ag: {conta.Agencia} Conta: {conta.Numero} Saldo: {conta.Saldo} Titular: {conta.Titular.Nome}");
             }
-        }    
+        }  
+        
+        CriarArquivo();
    
     }
 
@@ -45,6 +43,17 @@ class Program
         contaCorrente.Depositar(saldo);
         
         return contaCorrente;
+    }
+
+    static void CriarArquivo()
+    {
+        string newFilePath = "contasExportadas.csv";
+        using (FileStream fluxoDoArquivo = new FileStream(newFilePath, FileMode.Create))
+        using (StreamWriter writer = new StreamWriter(fluxoDoArquivo))
+        {
+                writer.Write("316,3254,3350.37,Leonardo");
+                Console.WriteLine("Arquivo criado com sucesso!");
+        }
     }
 
 }
