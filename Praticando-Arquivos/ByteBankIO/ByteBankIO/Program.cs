@@ -8,8 +8,10 @@ class Program
         
         //LerArquivo(filePath);
         //CriarArquivo();
-        CriarArquivoBinary();
-        LerArquivoBinary();
+        //CriarArquivoBinary();
+        //LerArquivoBinary();
+        //ClasseFile();
+        InputLogs();
    
     }
 
@@ -88,6 +90,29 @@ class Program
             string titular = reader.ReadString();
 
             Console.WriteLine($"Ag: {ag} Numero: {numeroConta} saldo: {saldo} Titular: {titular}");
+        }
+    }
+
+    static void ClasseFile()
+    {
+        string filePath = "contas.txt";
+        string text = File.ReadAllText(filePath);
+        Console.WriteLine(text);
+    }
+
+    static void InputLogs()
+    {
+        using(var fluxoDeEntrada = Console.OpenStandardInput())
+        using (var fs = new FileStream("contasExportadas.csv", FileMode.Create))
+        {
+            var buffer  = new byte[1024];
+            
+            while (true)
+            {
+                var bytesLidos = fluxoDeEntrada.Read(buffer, 0, 1024);
+                fs.Write(buffer, 0, bytesLidos);
+                fs.Flush();
+            }
         }
     }
 
