@@ -51,7 +51,8 @@ public class MenuTaskCompleted : IMenu
     private void CompleteTask(int id)
     {
         Tarefa _tarefa = _listTarefas.Find(t => t.Id == id);
-        _listTarefas.Remove(_tarefa);
+        if (_tarefa != null) _tarefa.Status = true;
+        
         using (FileStream fs = new FileStream("tarefa.txt", FileMode.Create))
         using (StreamWriter writer = new StreamWriter(fs))
         {
