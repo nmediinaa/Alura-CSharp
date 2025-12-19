@@ -1,11 +1,10 @@
 ﻿namespace ToDOList;
 
-public class MenuIndex : IMenu
+public class MenuTaskCompleted : IMenu
 {
-    string title = "To do List";
-    private string[] _value;
+    string title = "Menu Task Completed";
     private List<Tarefa> _listTarefas = new();
-    
+    private string[] _value;
     public void ShowHeader()
     {
         int charCount = title.Length;
@@ -14,12 +13,10 @@ public class MenuIndex : IMenu
         Console.WriteLine(title);
         for(int i = 0 ; i < charCount; i++) Console.Write("=");
         Console.WriteLine("");
-        Console.WriteLine("");
     }
 
     public int ShowOptions()
     {
-       
         _listTarefas.Clear();
         using(FileStream fs = new FileStream("tarefa.txt", FileMode.Open))
         using (StreamReader reader = new StreamReader(fs))
@@ -31,18 +28,17 @@ public class MenuIndex : IMenu
                 Console.WriteLine($"[{_value[0]}] {_value[1]} [{_value[2]}]");
             }
         }
-
-
+        
         Console.WriteLine("");
-        Console.WriteLine("1 - Adcionar tarefa");
-        Console.WriteLine("2 - Marcar como concluida uma tarefa");
-        Console.WriteLine("3 - Sair");
+        Console.WriteLine("Digite o ID da tarefa para completar");
         Console.Write(">> ");
         int cmd = int.Parse(Console.ReadLine()!);
-        return cmd;
+        CompleteTask(cmd);
+        return 1;
     
     }
 
+   
     private void CreateTarefa(string[] _value)
     {
         Tarefa _tarefa = new Tarefa();
@@ -51,4 +47,24 @@ public class MenuIndex : IMenu
         _tarefa.Status = bool.Parse(_value[2]);
         _listTarefas.Add(_tarefa);
     }
+
+    private void CompleteTask(int id)
+    {
+        Tarefa _tarefa = _listTarefas.Find(t => t.Id == id);
+        _listTarefas.Remove(_tarefa);
+        using (FileStream fs = new FileStream("tarefa.txt", FileMode.Create))
+        using (StreamWriter writer = new StreamWriter(fs))
+        {
+            foreach (var tarefa in _listTarefas)
+            {
+                string idTask = tarefa.Id.ToString();
+                string task = tarefa.Task;
+                string status = tarefa.Status.ToString();
+                string linha = $"{idTask};{task};{status}";
+                writer.WriteLine(linha);
+            }
+
+        }
+    }
+    
 }
