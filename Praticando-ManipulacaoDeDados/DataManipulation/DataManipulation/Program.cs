@@ -2,21 +2,43 @@
 
 DiasDaSemana diasDaSemana = new DiasDaSemana();
 
-var carrinho = new List<Produto>()
-{
-    new Produto(){Nome = "Livro", Preco = 49.90},
-    new Produto(){Nome = "Garrafa", Preco = 10.50}
-};
-
 
 foreach (var dia in diasDaSemana )
 {
     Console.WriteLine(dia);
 }
 
-foreach (Produto p in carrinho)
+IEnumerable<int> numeroPares = NumerosParesComYield();
+
+int contador = 0;
+foreach (var cont in numeroPares)
 {
-    Console.WriteLine(p.Nome + ": R$" + p.Preco);
+    Console.WriteLine(cont);
+    contador++;
+    if (contador > 5) break;
+}
+
+IEnumerable<int> NumerosParesComYield()
+{
+    int cont = 0;
+    while (true)
+    {
+        yield return cont * 2;
+        cont++;
+    }
+    
+}
+
+IEnumerable<int> NumerosParesSemYield(int limite)
+{
+    List<int> numeros = new List<int>();
+
+    for (int i = 0; i < limite; i++)
+    {
+        Console.WriteLine(numeros.Count);
+        numeros.Add(i*2);
+    }
+    return numeros;
 }
 
 class Produto()
@@ -24,7 +46,6 @@ class Produto()
     public string Nome { get; set; }
     public double Preco { get; set; }
 }
-
 
 class DiasDaSemana() : IEnumerable<string>
 {
