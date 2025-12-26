@@ -22,7 +22,7 @@ play1.Add(m3);
 ExibirPlaylist(play1);
 RemoverPorTitulo("The Trooper", play1);
 ExibirPlaylist(play1);
-
+MusicaAleatoria(play1);
 
 void ExibirPlaylist(Playlist playlist)
 {
@@ -44,6 +44,11 @@ void RemoverPorTitulo(string titulo, Playlist playlist)
     else Console.WriteLine("Nenhuma musica encontrada...");
 }
 
+void MusicaAleatoria(Playlist playlist)
+{
+    var musica = playlist.MusicaAleatoria();
+    Console.WriteLine($"Musica aleatória selecionada: {musica.Titulo} [{musica.Artista}]");
+}
 
 class Musica()
 {
@@ -83,6 +88,14 @@ class Playlist() : ICollection<Musica>//Transformando classe playlist em uma Lis
         return _listaMusicas.Contains(item);
     }
 
+    public Musica? MusicaAleatoria()
+    { 
+        if(_listaMusicas.Count == 0) return null;
+        Random random = new();
+        int numeroRand = random.Next(0, _listaMusicas.Count - 1);
+        return _listaMusicas[numeroRand];
+    }
+    
     public void CopyTo(Musica[] array, int arrayIndex)
     {
         throw new NotImplementedException();
