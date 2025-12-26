@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataManipulation", "DataManipulation\DataManipulation.csproj", "{8DC05391-2520-4CBB-BBD7-FA14C17CE997}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OperacoesComColecoes", "OperacoesComColecoes\OperacoesComColecoes.csproj", "{748FA761-E98A-4388-AE05-ED639262CFFB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{8DC05391-2520-4CBB-BBD7-FA14C17CE997}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8DC05391-2520-4CBB-BBD7-FA14C17CE997}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8DC05391-2520-4CBB-BBD7-FA14C17CE997}.Release|Any CPU.Build.0 = Release|Any CPU
+		{748FA761-E98A-4388-AE05-ED639262CFFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{748FA761-E98A-4388-AE05-ED639262CFFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{748FA761-E98A-4388-AE05-ED639262CFFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{748FA761-E98A-4388-AE05-ED639262CFFB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
