@@ -20,6 +20,9 @@ play1.Add(m2);
 play1.Add(m3);
 
 ExibirPlaylist(play1);
+RemoverPorTitulo("The Trooper", play1);
+ExibirPlaylist(play1);
+
 
 void ExibirPlaylist(Playlist playlist)
 {
@@ -28,6 +31,17 @@ void ExibirPlaylist(Playlist playlist)
     {
         Console.WriteLine($"    - {musica.Titulo} [{musica.Artista}]");
     }
+}
+
+void RemoverPorTitulo(string titulo, Playlist playlist)
+{
+    Musica? musica = playlist.MusicaPeloTitulo(titulo);
+    if (musica is not null)
+    {
+        Console.WriteLine($"Removendo {musica.Titulo} [{musica.Artista}]");
+        playlist.Remove(musica);
+    }
+    else Console.WriteLine("Nenhuma musica encontrada...");
 }
 
 
@@ -77,6 +91,13 @@ class Playlist() : ICollection<Musica>//Transformando classe playlist em uma Lis
     public bool Remove(Musica item)
     {
         return _listaMusicas.Remove(item);
+    }
+
+    public Musica? MusicaPeloTitulo(string titulo)
+    {
+        var musicaEncontrada = _listaMusicas.FirstOrDefault(m => m.Titulo == titulo);
+        if (musicaEncontrada == null) return null;
+        return musicaEncontrada;
     }
 
     public int Count
