@@ -20,9 +20,9 @@ play1.Add(m2);
 play1.Add(m3);
 
 ExibirPlaylist(play1);
-RemoverPorTitulo("The Trooper", play1);
-ExibirPlaylist(play1);
 MusicaAleatoria(play1);
+
+OrdenarPorArtista(play1);
 
 void ExibirPlaylist(Playlist playlist)
 {
@@ -50,12 +50,21 @@ void MusicaAleatoria(Playlist playlist)
     Console.WriteLine($"Musica aleatória selecionada: {musica.Titulo} [{musica.Artista}]");
 }
 
+void OrdenarPorArtista(Playlist playlist)
+{ 
+    var musicaOrdenadas = playlist.OrdenarMusicas();
+    foreach (var musica in musicaOrdenadas)
+    {
+        Console.WriteLine($"{musica.Titulo} [{musica.Artista}]");
+    }
+}
+
 class Musica()
 {
     public string Titulo { get; set; }
     public string Artista { get; set; }
     public int Duracao { get; set; }
-
+    
 }
 
 class Playlist() : ICollection<Musica>//Transformando classe playlist em uma Lista com interface ICollection
@@ -88,6 +97,13 @@ class Playlist() : ICollection<Musica>//Transformando classe playlist em uma Lis
         return _listaMusicas.Contains(item);
     }
 
+    public List<Musica> OrdenarMusicas()
+    { 
+        
+         List<Musica> musicasOrdenadas = _listaMusicas.OrderBy(m => m.Titulo).ToList();
+         return musicasOrdenadas;
+    }
+    
     public Musica? MusicaAleatoria()
     { 
         if(_listaMusicas.Count == 0) return null;
