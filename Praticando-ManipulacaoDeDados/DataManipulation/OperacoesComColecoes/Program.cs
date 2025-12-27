@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Globalization;
 
 Musica m1 = new();
 m1.Titulo = "The Trooper";
@@ -11,6 +12,8 @@ m2.Artista = "Metallica";
 m2.Duracao = 430;
 
 Musica m3 = new Musica() { Artista = "Limp bizkit", Titulo = "Take a look around", Duracao = 320 };
+Musica m4 = new Musica() { Artista = "Limp bizkit", Titulo = "Take a look around", Duracao = 320 };
+
 
 Playlist play1 = new();
 play1.Nome = "Playlis do Nicolas";
@@ -18,11 +21,13 @@ play1.Nome = "Playlis do Nicolas";
 play1.Add(m1);
 play1.Add(m2);
 play1.Add(m3);
+play1.Add(m4);
+play1.Add(m1);
 
 ExibirPlaylist(play1);
-MusicaAleatoria(play1);
+//MusicaAleatoria(play1);
+//OrdenarPorArtista(play1);
 
-OrdenarPorArtista(play1);
 
 void ExibirPlaylist(Playlist playlist)
 {
@@ -64,11 +69,23 @@ class Musica()
     public string Titulo { get; set; }
     public string Artista { get; set; }
     public int Duracao { get; set; }
-    
+
+    public override bool Equals(object? obj)
+    {
+        if(obj == null) return false;
+        if(obj is Musica musica)  return this.Titulo.Equals(musica.Titulo) && this.Artista.Equals(musica.Artista);
+        return false;
+    }
+
+    public override int GetHashCode()
+    {
+        return this.Titulo.GetHashCode() ^ this.Artista.GetHashCode();
+    }
 }
 
 class Playlist() : ICollection<Musica>//Transformando classe playlist em uma Lista com interface ICollection
 {
+    private HashSet<Musica> _hashMusicas = [];
     private List<Musica> _listaMusicas = [];
     public string Nome { get; set; }
 
@@ -84,7 +101,7 @@ class Playlist() : ICollection<Musica>//Transformando classe playlist em uma Lis
 
     public void Add(Musica item)
     {
-        _listaMusicas.Add(item);
+        if(_hashMusicas.Add(item)) _listaMusicas.Add(item);
     }
 
     public void Clear()
