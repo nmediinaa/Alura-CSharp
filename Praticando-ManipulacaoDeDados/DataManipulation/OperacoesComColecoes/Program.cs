@@ -22,15 +22,24 @@ play2.Add(m2);
 play2.Add(m4);
 play2.Add(m3);
 
+ReprodutorMusicas reprodutor = new();
+reprodutor.AdicionaMusica(m3);
+reprodutor.AdicionaPlaylist(play2);
 
-
-ExibirPlaylist(play1);
-ExibirPlaylist(play2);
-ExibirMusicasMaisTocada(play1, play2);
+//ExibirPlaylist(play1);
+//ExibirPlaylist(play2);
+//ExibirMusicasMaisTocada(play1, play2);
 //MusicaAleatoria(play1);
 //OrdenarPorArtista(play1);
+ExibirReproducao(reprodutor);
+reprodutor.ExibirMusicaTocando();
+ExibirReproducao(reprodutor);
 
-
+//Métodos
+void ExibirReproducao (ReprodutorMusicas reprodutor)
+{
+    reprodutor.ExibiReprodutor();
+}
 void ExibirMusicasMaisTocada(Playlist p1, Playlist p2)
 {
     Dictionary<Musica, int> ranking = new();
@@ -99,6 +108,8 @@ void OrdenarPorArtista(Playlist playlist)
     }
 }
 
+
+//Classes
 class Musica()
 {
     public string Titulo { get; set; }
@@ -189,5 +200,32 @@ class Playlist() : ICollection<Musica>//Transformando classe playlist em uma Lis
     public bool IsReadOnly
     {
         get { return false; }
+    }
+}
+
+class ReprodutorMusicas()
+{
+    private Queue<Musica> _filaMusicas = new Queue<Musica>();
+
+    public void AdicionaMusica(Musica musica)
+    {
+        _filaMusicas.Enqueue(musica);
+    }
+
+    public void AdicionaPlaylist(Playlist playlist)
+    {
+        foreach (var musica in playlist) AdicionaMusica(musica);
+    }
+
+    public void ExibiReprodutor()
+    {
+        Console.WriteLine("Exibindo reproduções:");
+        foreach (var musica in _filaMusicas) Console.WriteLine($"\t-{musica.Titulo} [{musica.Artista}]");
+    }
+
+    public void ExibirMusicaTocando()
+    {
+        Console.WriteLine($"Tocando: {_filaMusicas.Peek().Titulo} [{_filaMusicas.Peek().Artista}]");
+        _filaMusicas.Dequeue();
     }
 }
