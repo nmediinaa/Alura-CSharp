@@ -32,10 +32,20 @@ reprodutor.AdicionaPlaylist(play2);
 //MusicaAleatoria(play1);
 //OrdenarPorArtista(play1);
 ExibirReproducao(reprodutor);
+ExibirHistorico(reprodutor);
 reprodutor.ExibirMusicaTocando();
 ExibirReproducao(reprodutor);
-
+ExibirHistorico(reprodutor);
+reprodutor.RemoverDoHistorico();
+ExibirHistorico(reprodutor);
+ExibirReproducao(reprodutor);
 //Métodos
+void ExibirHistorico(ReprodutorMusicas reprodutor)
+{
+    var musica = reprodutor.ExibirHistorico();
+    if(musica is null) Console.WriteLine("Historico vazio!");
+    else Console.WriteLine($"Histórico de reprodução: {musica.Titulo} [{musica.Artista}]");
+}
 void ExibirReproducao (ReprodutorMusicas reprodutor)
 {
     reprodutor.ExibiReprodutor();
@@ -205,7 +215,8 @@ class Playlist() : ICollection<Musica>//Transformando classe playlist em uma Lis
 
 class ReprodutorMusicas()
 {
-    private Queue<Musica> _filaMusicas = new Queue<Musica>();
+    private Queue<Musica> _filaMusicas = new Queue<Musica>(); //FIFO (First in, First Out)
+    private Stack<Musica> _historicoMusicas = []; //LIFO (Last in, First Out)
 
     public void AdicionaMusica(Musica musica)
     {
@@ -226,6 +237,20 @@ class ReprodutorMusicas()
     public void ExibirMusicaTocando()
     {
         Console.WriteLine($"Tocando: {_filaMusicas.Peek().Titulo} [{_filaMusicas.Peek().Artista}]");
+        _historicoMusicas.Push(_filaMusicas.Peek());
         _filaMusicas.Dequeue();
+    }
+
+    public Musica? ExibirHistorico()
+    {
+        if(!_historicoMusicas.Any()) return null;
+        Musica musica = _historicoMusicas.Peek();
+        return musica;
+    }
+
+    public void RemoverDoHistorico()
+    {
+        var musica = _historicoMusicas.Pop();
+        Console.WriteLine($"Tocando: {musica.Titulo} [{musica.Artista}]");
     }
 }
