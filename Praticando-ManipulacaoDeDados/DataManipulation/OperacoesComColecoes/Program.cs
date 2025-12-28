@@ -1,39 +1,74 @@
 ﻿using System.Collections;
 using System.Globalization;
 
-Musica m1 = new();
-m1.Titulo = "The Trooper";
-m1.Artista = "Iron Maiden";
-m1.Duracao = 430;
-
-Musica m2 = new();
-m2.Titulo = "Enter Sandman";
-m2.Artista = "Metallica";
-m2.Duracao = 430;
-
+Musica m1 = new Musica(){Artista = "Iron Maiden", Titulo = "The Trooper", Duracao = 430};
+Musica m2 = new Musica(){Artista = "Metallica", Titulo = "Enter Sandman", Duracao = 430};
 Musica m3 = new Musica() { Artista = "Limp bizkit", Titulo = "Take a look around", Duracao = 320 };
-Musica m4 = new Musica() { Artista = "Limp bizkit", Titulo = "Take a look around", Duracao = 320 };
+Musica m4 = new Musica() { Artista = "Linkin Park", Titulo = "In the end", Duracao = 420 };
 
 
 Playlist play1 = new();
-play1.Nome = "Playlis do Nicolas";
-
+play1.Nome = "Playlist do Nicolas";
 play1.Add(m1);
 play1.Add(m2);
-play1.Add(m3);
 play1.Add(m4);
-play1.Add(m1);
+play1.Add(m3);
+
+
+Playlist play2 = new Playlist();
+play2.Nome = "Playlist Rock";
+play2.Add(m1);
+play2.Add(m2);
+play2.Add(m4);
+play2.Add(m3);
+
+
 
 ExibirPlaylist(play1);
+ExibirPlaylist(play2);
+ExibirMusicasMaisTocada(play1, play2);
 //MusicaAleatoria(play1);
 //OrdenarPorArtista(play1);
 
 
+void ExibirMusicasMaisTocada(Playlist p1, Playlist p2)
+{
+    Dictionary<Musica, int> ranking = new();
+    foreach (var musica in p1)
+    {
+        ranking.Add(musica, 1);
+    }
+
+    foreach (var musica in p2)
+    {
+        if (ranking.TryGetValue(musica, out int valor))
+        {
+            valor++;
+            ranking[musica] = valor;
+        }
+        else
+        {
+            ranking.Add(musica, 1);    
+        }
+        
+    }
+    
+    var topMusicas = ranking.OrderByDescending(m => m.Value).ToList();
+
+    Console.WriteLine("TOP 3 Musicas mais tocadas");
+    int cont = 0;
+    foreach (var musica in topMusicas)
+    {
+        Console.WriteLine($"\t- {musica.Key.Titulo} [{musica.Key.Artista}]");
+        cont++;
+        if (cont == 3) break;
+    }
+}
 void ExibirPlaylist(Playlist playlist)
 {
     Console.WriteLine($"Exibindo {playlist.Nome}");
     foreach (var musica in playlist)
-    {
+    { 
         Console.WriteLine($"    - {musica.Titulo} [{musica.Artista}]");
     }
 }
