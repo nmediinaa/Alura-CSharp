@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataManipulation", "DataMan
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OperacoesComColecoes", "OperacoesComColecoes\OperacoesComColecoes.csproj", "{748FA761-E98A-4388-AE05-ED639262CFFB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbstraindoFontesDeDados", "AbstraindoFontesDeDados\AbstraindoFontesDeDados.csproj", "{04EDA7B1-13DE-4531-A6B5-5DDD18276438}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{748FA761-E98A-4388-AE05-ED639262CFFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{748FA761-E98A-4388-AE05-ED639262CFFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{748FA761-E98A-4388-AE05-ED639262CFFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04EDA7B1-13DE-4531-A6B5-5DDD18276438}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04EDA7B1-13DE-4531-A6B5-5DDD18276438}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04EDA7B1-13DE-4531-A6B5-5DDD18276438}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04EDA7B1-13DE-4531-A6B5-5DDD18276438}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
