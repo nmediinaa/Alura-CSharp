@@ -1,6 +1,6 @@
 ﻿
 IEnumerable<Musica> listaMusicas = ObterMusicas("C:\\Projetos\\Pessoais\\Alura-CSharp\\Praticando-ManipulacaoDeDados\\DataManipulation\\OperacoesComColecoes\\musicas.csv");
-ExibirMusicas(listaMusicas);
+ExibirMusicas(listaMusicas.PorArtista("Coldplay"));
 
 //Métodos
 void ExibirMusicas(IEnumerable<Musica> musicas)
@@ -39,6 +39,16 @@ IEnumerable<Musica> ObterMusicas(string path)
 }
 
 //Classes
+static class MusicaExtension
+{
+    public static IEnumerable<Musica> PorArtista(this IEnumerable<Musica> lista, string Artista)
+    {
+        foreach (var musica in lista)
+        {
+            if (musica.Artista == Artista) yield return musica;
+        }
+    }
+}
 class Musica
 {
     public string Titulo { get; set; }
