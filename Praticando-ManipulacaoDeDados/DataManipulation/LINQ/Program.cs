@@ -1,6 +1,10 @@
-﻿
-IEnumerable<Musica> listaMusicas = ObterMusicas("C:\\Projetos\\Pessoais\\Alura-CSharp\\Praticando-ManipulacaoDeDados\\DataManipulation\\OperacoesComColecoes\\musicas.csv");
-ExibirMusicas(listaMusicas.Where(m => m.Duracao > 400).ToList());
+﻿IEnumerable<Musica> listaMusicas = ObterMusicas("C:\\Projetos\\Pessoais\\Alura-CSharp\\Praticando-ManipulacaoDeDados\\DataManipulation\\OperacoesComColecoes\\musicas.csv");
+
+IEnumerable<Musica> musicasFiltradas = listaMusicas.Where(m => m.Artista == "Metallica")
+    .Where(m => m.Duracao > 300).OrderBy(m => m.Titulo).ThenBy(m => m.Duracao).Skip(5).Take(5);
+
+ExibirMusicas(musicasFiltradas);
+
 
 //Métodos
 void ExibirMusicas(IEnumerable<Musica> musicas)
@@ -11,7 +15,7 @@ void ExibirMusicas(IEnumerable<Musica> musicas)
     {
         Console.WriteLine($"\t- {musica.Titulo} - [{musica.Artista}] | [{musica.Duracao}Ms]");
         cont++;
-        if (cont == 5) break;
+        if (cont == 10) break;
     }
 }
 
@@ -38,16 +42,6 @@ IEnumerable<Musica> ObterMusicas(string path)
 }
 
 //Classes
-static class MusicaExtension
-{
-    public static IEnumerable<Musica> PorArtista(this IEnumerable<Musica> lista, string Artista)
-    {
-        foreach (var musica in lista)
-        {
-            if (musica.Artista == Artista) yield return musica;
-        }
-    }
-}
 class Musica
 {
     public string Titulo { get; set; }
