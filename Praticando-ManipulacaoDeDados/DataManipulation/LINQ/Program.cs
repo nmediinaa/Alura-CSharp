@@ -1,12 +1,41 @@
 ﻿IEnumerable<Musica> listaMusicas = ObterMusicas("C:\\Projetos\\Pessoais\\Alura-CSharp\\Praticando-ManipulacaoDeDados\\DataManipulation\\OperacoesComColecoes\\musicas.csv");
 
-IEnumerable<Musica> musicasFiltradas = listaMusicas.Where(m => m.Artista == "Metallica")
-    .Where(m => m.Duracao > 300).OrderBy(m => m.Titulo).ThenBy(m => m.Duracao).Skip(5).Take(5);
+IEnumerable<Musica> musicasFiltradas = 
+    listaMusicas.Where(m => m.Artista == "Metallica")
+    .Where(m => m.Duracao > 300)
+    .OrderBy(m => m.Titulo)
+    .ThenBy(m => m.Duracao)
+    .Skip(5)
+    .Take(5);
+//ExibirMusicas(musicasFiltradas);
 
-ExibirMusicas(musicasFiltradas);
+var artistas = 
+    listaMusicas.Select(m => m.Artista)
+        .Distinct()
+        .OrderBy(a => a);
+//ExibindoArtistas(artistas);
 
+var generos = 
+    listaMusicas.SelectMany(m => m.Genero)//Junta todos os itens da sublista Genero em uma só
+        .Distinct()
+        .OrderBy(g => g);
+ExibindoGeneros(generos);
 
 //Métodos
+void ExibindoGeneros(IEnumerable<string> generos)
+{
+    Console.WriteLine("Exibindo Generos do arquivo:");
+    foreach (var genero in generos) Console.WriteLine($"\t- {genero}");
+    
+}
+void ExibindoArtistas(IEnumerable<string> artistas)
+{
+    Console.WriteLine("Artistas do arquivo:");
+    foreach (var artista in artistas)
+    {
+        Console.WriteLine($"\t- {artista}");
+    }    
+}
 void ExibirMusicas(IEnumerable<Musica> musicas)
 {
     int cont = 0;
@@ -35,6 +64,7 @@ IEnumerable<Musica> ObterMusicas(string path)
             musica.Titulo = linhas[0];
             musica.Artista = linhas[1];
             musica.Duracao = int.Parse(linhas[2]);
+            musica.Genero = linhas[3].Split(',').Select(g => g.Trim());
             yield return musica;
         }
     
@@ -47,4 +77,5 @@ class Musica
     public string Titulo { get; set; }
     public string Artista { get; set; }
     public int Duracao { get; set; }
+    public IEnumerable<string> Genero { get; set; }
 }
