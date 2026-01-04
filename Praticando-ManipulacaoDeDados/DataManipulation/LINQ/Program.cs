@@ -9,19 +9,27 @@ IEnumerable<Musica> musicasFiltradas =
     .Take(5);
 //ExibirMusicas(musicasFiltradas);
 
-var artistas = 
-    listaMusicas.Select(m => m.Artista)
-        .Distinct()
-        .OrderBy(a => a);
-//ExibindoArtistas(artistas);
 
 var generos = 
     listaMusicas.SelectMany(m => m.Genero)//Junta todos os itens da sublista Genero em uma só
         .Distinct()
         .OrderBy(g => g);
-ExibindoGeneros(generos);
-
+//ExibindoGeneros(generos);
+var artistas = listaMusicas.GroupBy(m => m.Artista)
+    .Where(m => m.Count() > 10);
+ExibindoMusicasByArtistas(artistas);
 //Métodos
+void ExibindoMusicasByArtistas(IEnumerable<IGrouping<string, Musica>> artistas)
+{
+    foreach (var artista in artistas.Take(5))
+    {
+        Console.WriteLine($"Musicas do artista {artista.Key} [{artista.Count()} Músicas]");
+        foreach (var musica in artista)
+        {
+            Console.WriteLine($"\t- {musica.Titulo}");
+        }
+    }
+}
 void ExibindoGeneros(IEnumerable<string> generos)
 {
     Console.WriteLine("Exibindo Generos do arquivo:");
