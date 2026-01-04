@@ -15,9 +15,18 @@ var generos =
         .Distinct()
         .OrderBy(g => g);
 //ExibindoGeneros(generos);
+
+
 var artistas = listaMusicas.GroupBy(m => m.Artista)
     .Where(m => m.Count() > 10);
-ExibindoMusicasByArtistas(artistas);
+//ExibindoMusicasByArtistas(artistas);
+
+var artistaComMaisMusicas = 
+    listaMusicas.GroupBy(m => m.Artista)
+        .Select(a => new {Nome = a.Key, Musicas = a, Total = a.Count() })
+        .MaxBy(a => a.Total);
+if(artistaComMaisMusicas is not null)
+    Console.WriteLine($"Artista com mais musica é {artistaComMaisMusicas.Nome} com {artistaComMaisMusicas.Total} musicas");
 //Métodos
 void ExibindoMusicasByArtistas(IEnumerable<IGrouping<string, Musica>> artistas)
 {
