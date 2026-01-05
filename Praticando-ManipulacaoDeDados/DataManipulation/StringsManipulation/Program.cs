@@ -1,8 +1,20 @@
 ﻿using var stream = new FileStream("musicas.csv", FileMode.Open);
 using var reader = new StreamReader(stream);
 
+var senha = "Nicolas@26";
 
+int totalCaracteres = senha.Length;// ou poderiamos usar o .Count()
+int possuiLetrasMaiusculas = senha.Count(c => char.IsUpper(c));
+int possuiLetrasMinusculas = senha.Count(c => char.IsLower(c));
+int possuiNumero = senha.Count(c => char.IsDigit(c));
+int possuiSimbolo = senha.Count(c => !char.IsLetterOrDigit(c));
 
+if (totalCaracteres < 8 || possuiLetrasMaiusculas == 0 ||
+    possuiLetrasMinusculas == 0 || possuiNumero == 0 ||
+    possuiSimbolo == 0)
+{
+    Console.WriteLine("SENHA FRACA");
+}else Console.WriteLine("Senha FORTE!");
 //Métodos
 IEnumerable<Musica> MusicasDoCsv(StreamReader leitor)
 {
