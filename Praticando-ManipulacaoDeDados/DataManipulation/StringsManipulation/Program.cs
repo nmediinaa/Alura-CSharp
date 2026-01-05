@@ -4,9 +4,9 @@ using var reader = new StreamReader(stream);
 var senha = "Nicolas@26";
 
 int totalCaracteres = senha.Length;// ou poderiamos usar o .Count()
-int possuiLetrasMaiusculas = senha.Count(c => char.IsUpper(c));
-int possuiLetrasMinusculas = senha.Count(c => char.IsLower(c));
-int possuiNumero = senha.Count(c => char.IsDigit(c));
+int possuiLetrasMaiusculas = senha.Count(c => char.IsUpper(c)!);
+int possuiLetrasMinusculas = senha.Count(c => char.IsLower(c)!);
+int possuiNumero = senha.Count(c => char.IsDigit(c)!);
 int possuiSimbolo = senha.Count(c => !char.IsLetterOrDigit(c));
 
 if (totalCaracteres < 8 || possuiLetrasMaiusculas == 0 ||
@@ -29,7 +29,7 @@ IEnumerable<Musica> MusicasDoCsv(StreamReader leitor)
             Titulo = partes[0],
             Artista = partes[1],
             Duracao = Convert.ToInt32(partes[2]),
-            Generos = partes[3].Split(',').Select(g => g.Trim()).ToArray()
+            Generos = partes[3].Split(',', StringSplitOptions.TrimEntries)//remove os espaços em branco indesejados
         };
         yield return musica;
         linha = leitor.ReadLine();
