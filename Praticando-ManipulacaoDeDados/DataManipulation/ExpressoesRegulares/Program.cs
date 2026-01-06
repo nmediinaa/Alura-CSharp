@@ -1,4 +1,6 @@
-﻿using var stream = new FileStream("musicas.csv", FileMode.Open);
+﻿using System.Text.RegularExpressions;
+
+using var stream = new FileStream("musicas.csv", FileMode.Open);
 using var reader = new StreamReader(stream);
 
 var musicas = ObterMusicas(reader).Take(5);
@@ -19,7 +21,7 @@ void ExibirMusicasEmTabela(IEnumerable<Musica> musicas)
 
     foreach (var musica in musicas)
     {
-        var duracao = string.Format("{0,-10:F3}", musica.Duracao / 60.0);
+        var duracao = string.Format("{0,-10:F2}", musica.Duracao / 60.0);
         var linha = $"{musica.Titulo,-40}{musica.Artista,-30}{duracao}{musica.Lancamento,-15:dd/MM/yyyy}";
         Console.WriteLine(linha);
     }
@@ -33,11 +35,21 @@ IEnumerable<Musica> ObterMusicas(StreamReader stream)
         var partes = linha.Split(';');
         if (partes.Length == 5)
         {
+            int duracao = 350;
+            Match match = Regex.Match(partes[2], @"(\d?\d):(\d\d)");
+            if (match.Success)
+            {
+               var grupos = match.Groups;
+               var minutos = grupos[1].Value;
+               var segundos = grupos[2].Value;
+
+               duracao = (int.Parse(minutos) * 60) + int.Parse(segundos);
+            }
             var musica = new Musica
             {
                 Titulo = string.IsNullOrWhiteSpace(partes[0]) ? "Título não encontrado" : partes[0],
                 Artista = string.IsNullOrWhiteSpace(partes[1]) ? "Artista não encontrado" : partes[1],
-                Duracao = int.TryParse(partes[2], out int duracao) ? duracao : 350,
+                Duracao = duracao,
                 Generos = partes[3].Split(',', StringSplitOptions.TrimEntries),
                 Lancamento = DateTime.TryParse(partes[4], out var data) ? data : DateTime.Today
             };
