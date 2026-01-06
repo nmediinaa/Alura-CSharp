@@ -3,8 +3,26 @@
 using var stream = new FileStream("musicas.csv", FileMode.Open);
 using var reader = new StreamReader(stream);
 
+Regex regexCharEspecial = new Regex(@"[^a-zA-Z0-9\s]");
+
 var musicas = ObterMusicas(reader).Take(5);
-ExibirMusicasEmTabela(musicas);
+//ExibirMusicasEmTabela(musicas);
+
+ArtistasComCharEspecial(regexCharEspecial, reader);
+
+
+void ArtistasComCharEspecial(Regex regex, StreamReader reader)
+{
+    var artistasComCharEspeciais = ObterMusicas(reader)
+        .Where(m => regexCharEspecial.IsMatch(m.Artista))
+        .Select(m => m.Artista)
+        .Distinct();
+    
+    foreach (var artista in artistasComCharEspeciais)
+    {
+        Console.WriteLine(artista);
+    } 
+}
 
 void ExibirMusicasEmTabela(IEnumerable<Musica> musicas)
 {
