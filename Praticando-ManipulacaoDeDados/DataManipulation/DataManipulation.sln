@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LINQ", "LINQ\LINQ.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringsManipulation", "StringsManipulation\StringsManipulation.csproj", "{7AFA08B8-6CE4-481D-9A52-0D79E63251AD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpressoesRegulares", "ExpressoesRegulares\ExpressoesRegulares.csproj", "{6E385547-0A39-4E41-B7E6-B2EF3ADE0068}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{7AFA08B8-6CE4-481D-9A52-0D79E63251AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7AFA08B8-6CE4-481D-9A52-0D79E63251AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7AFA08B8-6CE4-481D-9A52-0D79E63251AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E385547-0A39-4E41-B7E6-B2EF3ADE0068}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E385547-0A39-4E41-B7E6-B2EF3ADE0068}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E385547-0A39-4E41-B7E6-B2EF3ADE0068}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E385547-0A39-4E41-B7E6-B2EF3ADE0068}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

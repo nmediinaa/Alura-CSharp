@@ -2,7 +2,6 @@
 using var reader = new StreamReader(stream);
 
 var musicas = MusicasDoCsv(reader)
-    .Where(m => m.Artista.Equals("Coldplay", StringComparison.OrdinalIgnoreCase))
     .Take(5);
 
 ExibirMusicas(musicas);
