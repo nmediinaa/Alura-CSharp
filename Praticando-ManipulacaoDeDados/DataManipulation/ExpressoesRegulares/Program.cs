@@ -1,16 +1,31 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.Text.RegularExpressions;
 
 using var stream = new FileStream("musicas.csv", FileMode.Open);
 using var reader = new StreamReader(stream);
 
 Regex regexCharEspecial = new Regex(@"[^a-zA-Z0-9\s]");
 
-var musicas = ObterMusicas(reader).Take(5);
-//ExibirMusicasEmTabela(musicas);
+CreatingJsonFile(reader);
 
-ArtistasComCharEspecial(regexCharEspecial, reader);
+//ArtistasComCharEspecial(regexCharEspecial, reader);
 
+void CreatingJsonFile(StreamReader reader)
+{
+    var musicas = ObterMusicas(reader)
+        .GroupBy(m => m.Artista)
+        .Select(g => new { Artista = g.Key, Musicas = g.OrderBy(m => m.Lancamento), Total = g.Count() })
+        .ToList();
 
+    var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Artistas.json");//Buscando o caminho de um diretório
+
+    using var jsonFile = new FileStream(path, FileMode.Create, FileAccess.Write);
+    var options = new JsonSerializerOptions { WriteIndented = true };
+    JsonSerializer.Serialize(jsonFile, musicas, options);
+
+    Console.WriteLine("Arquivo JSON Gerado!");
+}
 void ArtistasComCharEspecial(Regex regex, StreamReader reader)
 {
     var artistasComCharEspeciais = ObterMusicas(reader)
