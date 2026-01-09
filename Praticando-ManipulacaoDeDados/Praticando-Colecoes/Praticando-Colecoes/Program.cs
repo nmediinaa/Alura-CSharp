@@ -56,31 +56,47 @@ foreach (var valor in charsSequence)
     Console.WriteLine(valor);
 }
 
-List<string> nomesSorteio = new List<string> { "Ana", "Carlos", "Mariana", "João", "Lucas" };
-nomesSorteio.Sort();
 
-Console.WriteLine("Após Sort (ordem alfabética):");
-foreach (var valor in nomesSorteio)
+void SorteioNomes()
+
 {
-    Console.WriteLine(valor);
+    List<string> nomesSorteio = new List<string> { "Ana", "Carlos", "Mariana", "João", "Lucas" };
+    nomesSorteio.Sort();
+
+    Console.WriteLine("Após Sort (ordem alfabética):");
+    foreach (var valor in nomesSorteio)
+    {
+        Console.WriteLine(valor);
+    }
+
+    nomesSorteio.Reverse();
+
+    Console.WriteLine("Após Reverse (ordem invertida):");
+    foreach (var valor in nomesSorteio)
+    {
+        Console.WriteLine(valor);
+    }
+
+    string primeiroNome = nomesSorteio[0];
+    nomesSorteio.Remove(primeiroNome);
+    nomesSorteio.Add(primeiroNome);;
+
+    Console.WriteLine("Após remover o primeiro e adicioná-lo no fim:");
+    foreach (var valor in nomesSorteio)
+    {
+        Console.WriteLine(valor);
+    }
+
+    Console.WriteLine($"Pessoa sorteada foi: {nomesSorteio[3]}");
 }
 
-nomesSorteio.Reverse();
+List<string> produtosPrincipal = new List<string> { "Mouse", "Teclado", "Monitor", "Joystick"};  
+List<string> produtosSecundaria = new List<string> { "Headset", "Webcam", "Smartphone", "Mousepad"};
 
-Console.WriteLine("Após Reverse (ordem invertida):");
-foreach (var valor in nomesSorteio)
+foreach (var produto in produtosSecundaria) produtosPrincipal.Add(produto);
+
+Console.WriteLine("Lista consolidada:");
+foreach (var produto in produtosPrincipal)
 {
-    Console.WriteLine(valor);
+    Console.WriteLine(produto);
 }
-
-string primeiroNome = nomesSorteio[0];
-nomesSorteio.Remove(primeiroNome);
-nomesSorteio.Add(primeiroNome);;
-
-Console.WriteLine("Após remover o primeiro e adicioná-lo no fim:");
-foreach (var valor in nomesSorteio)
-{
-    Console.WriteLine(valor);
-}
-
-Console.WriteLine($"Pessoa sorteada foi: {nomesSorteio[3]}");
