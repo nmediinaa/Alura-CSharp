@@ -1,4 +1,6 @@
 ﻿
+RelatorioEntrega();
+
 void RelatorioEntrega()
 {
     Console.WriteLine("Digite o nome do cliente:");
