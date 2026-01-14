@@ -19,6 +19,8 @@ Abaixo você encontra alguns diretórios das aulas com exercicios e projetos que
 | [**📂 Praticando-Operacoes**](./Praticando-Operacoes) | Variaveis e tipos | ✅ |
 | [**📂 Praticando-OO**](./Praticando-OO) | Classes, Métodos, Herança, Encapsulamento, Polimorfismo, Composição | ✅ |
 | [**📂 Praticando-API-LINQ**](./Praticando-API-LINQ) | HttpClient, Json, LINQ e Files | ✅ |
+| [**📂 Praticando-Arquivos**](./Praticando-Arquivos) | FileStream, Buffer, StreamReader e etc | ✅ |
+| [**📂 Praticando-ManipulacaoDeDados**](./Praticando-ManipulacaoDeDados) | Coleções, yield, LINQ e Regex | ✅ |
 
 ---
 *Desenvolvido por Nicolas Medina durante os estudos de C#.*
