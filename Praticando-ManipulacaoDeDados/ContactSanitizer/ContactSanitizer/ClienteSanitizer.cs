@@ -14,6 +14,8 @@ public class ClienteSanitizer
     {
         string[] values = {};
         
+        Regex emailValidation = new Regex(@"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$");
+        
         foreach (var linha in ClienteValues)
         {
             values = linha.Split(';');
@@ -21,14 +23,15 @@ public class ClienteSanitizer
             string nome = textInfo.ToTitleCase(values[1].ToLower());
             string nomeFormatado = Regex.Replace(nome, @"\s{2,}", " ");
             
-            string telefoneFormatado = values[2];
+            string email = values[3];
+            string emailValid = emailValidation.IsMatch(email) ? email : "Email invalido!";
             
             Cliente cliente = new Cliente()
             {
                 Id = int.TryParse(values[0], out int id) ? id : -1,
                 Nome = nomeFormatado,
-                Tel = telefoneFormatado,
-                Email = values[3],
+                Tel = values[2],
+                Email = emailValid,
             };
             _listCliente.Add(cliente);
         }
