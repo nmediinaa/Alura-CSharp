@@ -13,7 +13,7 @@ var listaCliente = clienteSanitizer.Sanitize();
 
 foreach (var cliente in listaCliente)
 {
-    Console.WriteLine($" | [{cliente.Id}] {cliente.Nome} {cliente.Tel} {cliente.Email}");
+    Console.WriteLine($" | Id: {cliente.Id} | Nome: {cliente.Nome} | Tel: {cliente.Tel} | Email: {cliente.Email}");
 }
 
 
