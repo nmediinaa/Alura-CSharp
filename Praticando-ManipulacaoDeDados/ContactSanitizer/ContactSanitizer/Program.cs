@@ -4,17 +4,14 @@ using ContactSanitizer;
 FileReader fileReader = new FileReader("Dados.txt");
 string[] linhas = fileReader.ReaderLines();
 
-ClienteSanitizer clienteSanitizer = new ClienteSanitizer()
-{
-    ClienteValues = linhas
-};
+ClienteSanitizer clienteSanitizer = new ClienteSanitizer();
 
-var listaCliente = clienteSanitizer.Sanitize();
+var relatorio = clienteSanitizer.Sanitize(linhas);
 
-foreach (var cliente in listaCliente)
-{
-    Console.WriteLine($" | Id: {cliente.Id} | Nome: {cliente.Nome} | Tel: {cliente.Tel} | Email: {cliente.Email}");
-}
+relatorio.ExibirRelatorio();
+
+
+
 
 
 
