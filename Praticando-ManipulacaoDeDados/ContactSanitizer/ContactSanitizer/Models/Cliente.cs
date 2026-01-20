@@ -1,4 +1,4 @@
-﻿namespace ContactSanitizer;
+﻿namespace ContactSanitizer.Models;
 
 public class Cliente
 {

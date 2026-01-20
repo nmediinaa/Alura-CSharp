@@ -1,7 +1,9 @@
 ﻿using System.Globalization;
 using System.Text.RegularExpressions;
+using ContactSanitizer.Models;
+using ContactSanitizer.View;
 
-namespace ContactSanitizer;
+namespace ContactSanitizer.Services;
 
 public class ClienteSanitizer
 {

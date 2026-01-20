@@ -1,4 +1,6 @@
-﻿namespace ContactSanitizer;
+﻿using ContactSanitizer.Models;
+
+namespace ContactSanitizer.View;
 
 public class RelatorioFinal
 {

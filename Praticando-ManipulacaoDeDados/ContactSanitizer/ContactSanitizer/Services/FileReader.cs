@@ -1,6 +1,6 @@
 ﻿using System.Net.Http.Headers;
 
-namespace ContactSanitizer;
+namespace ContactSanitizer.Services;
 
 public class FileReader
 {
