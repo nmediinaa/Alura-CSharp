@@ -20,8 +20,12 @@ public class CSVReporterGenerator : IReporter
         if (Input == null || Input.Count == 0) throw new Exception("Input vazio ou nulo!");
 
         StringBuilder report = new StringBuilder();
-        
-        if(!string.IsNullOrEmpty(Title)) report.AppendLine(Title);
+
+        if (!string.IsNullOrEmpty(Title))
+        {
+            report.AppendLine(Title);
+            report.Append("");
+        }
         if(!string.IsNullOrEmpty(Description)) report.AppendLine(Description);
 
         string header = string.Join(';', Input.First().Keys);
@@ -32,8 +36,12 @@ public class CSVReporterGenerator : IReporter
             string line = string.Join(';', item.Values);
             report.AppendLine(line);
         }
-        
-        if (!string.IsNullOrEmpty(Footer)) report.AppendLine(Footer);
+
+        if (!string.IsNullOrEmpty(Footer))
+        {
+            report.AppendLine(Footer);
+            report.Append("");
+        }
         
         File.WriteAllText("Report.csv", report.ToString(),  Encoding.UTF8);
         
