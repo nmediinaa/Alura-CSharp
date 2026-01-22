@@ -23,8 +23,8 @@ public class CSVReporterGenerator : IReporter
 
         if (!string.IsNullOrEmpty(Title))
         {
-            report.AppendLine(Title);
             report.Append("");
+            report.AppendLine(Title);
         }
         if(!string.IsNullOrEmpty(Description)) report.AppendLine(Description);
 
@@ -39,9 +39,12 @@ public class CSVReporterGenerator : IReporter
 
         if (!string.IsNullOrEmpty(Footer))
         {
-            report.AppendLine(Footer);
             report.Append("");
+            report.AppendLine(Footer);
         }
+
+        DataFormater dataFormater = new DataFormater();
+        report.Append(dataFormater.FormatData(DateTime.Now.ToString()));
         
         File.WriteAllText("Report.csv", report.ToString(),  Encoding.UTF8);
         
