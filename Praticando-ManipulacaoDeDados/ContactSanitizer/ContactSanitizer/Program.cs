@@ -24,9 +24,9 @@ foreach (var cliente in  relatorio.ListaClientes)
     reportData.Add(record);
 }
 
-IReporter reporterGenerator = new CSVReporterGenerator(reportData);
+CSVReporter reporter = new CSVReporter(reportData);
 
-Console.WriteLine(reporterGenerator.Generate());
+Console.WriteLine(reporter.GenerateReport("DadosClientesAtivos.csv"));
 Console.WriteLine("");
 relatorio.ExibirRelatorio();
 
