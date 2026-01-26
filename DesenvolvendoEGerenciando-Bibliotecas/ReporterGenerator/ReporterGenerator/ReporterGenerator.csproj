@@ -8,4 +8,8 @@
         <Authors>Nicolas Medina</Authors>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="itext" Version="9.5.0" />
+    </ItemGroup>
+
 </Project>
