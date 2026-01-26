@@ -3,19 +3,12 @@ using System.Text;
 
 namespace ReporterGenerator;
 
-public class CSVReporterGenerator : IReporter
+public class CSVReporterGenerator : ReporterGenerator
 {
-    public List<Dictionary<string, string>> Input { get; set; }
-    public string Title { get; set; }
-    public string Description { get; set; }
-    public string Footer { get; set; }
+    public CSVReporterGenerator(List<Dictionary<string, string>> input) : base(input){}
+   
 
-    public CSVReporterGenerator(List<Dictionary<string, string>> input)
-    {
-        this.Input = input;
-    }
-
-    public string Generate()
+    public override string Generate()
     {
         if (Input == null || Input.Count == 0) throw new Exception("Input vazio ou nulo!");
 
